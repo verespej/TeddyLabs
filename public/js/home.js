@@ -35,7 +35,12 @@ $(function () {
 		"img/toys1.jpg",
 		"img/toys2.jpg",
 		"img/toys3.jpg",
-		"img/toys4.jpg"
+		"img/toys4.jpg",
+		"img/toys5.jpg",
+		"img/toys6.jpg",
+		"img/toys7.jpg",
+		"img/toys8.jpg",
+		"img/toys9.jpg"
 	];
 
 	for (var i = 0; i < backgrounds.length; i++) {
