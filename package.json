@@ -1,0 +1,25 @@
+{
+  "name": "TeddyLabs",
+  "version": "0.0.1",
+  "description": "Crowd-sourced toys for kids",
+  "homepage": "http://teddylabs.com/",
+  "private": true,
+  "preferGlobal": false,
+  "scripts": {
+    "start": "node ./bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hverespej/TeddyLabs"
+  },
+  "keywords": [
+    "teddy",
+    "labs",
+    "kids"
+  ],
+  "dependencies" : {
+    "express": ">= 3.4.0",
+    "mongodb": ">= 1.3.19"
+  },
+  "license": "MIT"
+}
