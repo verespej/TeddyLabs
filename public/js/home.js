@@ -9,9 +9,11 @@ $(function () {
 		}
 
 		// Post the email
-		$.post('/', $(this).serialize(), function () {
+		$.post('/email/', $(this).serialize()).done(function () {
 			console.log('hi');
 		});
+
+		return false;
 	});
 
 	function onSuccess() {
@@ -28,7 +30,7 @@ $(function () {
 	function url(str) {
 		return "url(" + str + ")";
 	}
-	
+
 	var backgrounds = [
 		"css/Images/toys1.jpg",
 		"css/Images/toys2.jpg",
@@ -53,7 +55,7 @@ $(function () {
 		},
 
 		//1000 * 60
-		1000 * 2
+		1000 * 5
 	);
 
 });

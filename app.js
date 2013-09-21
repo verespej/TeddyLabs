@@ -24,11 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res) {
 	res.sendfile('public/index.html');
 });
-app.get('/email/', function (req, res) {
-	console.log('got email');
-    // var firstName = req.param('firstName');
-    // var lastName = req.param('lastName');
-    // var emailId = req.param('email');
+app.post('/email/', function (req, res) {
+    var email = req.param('email');
+    console.log(email);
 });
 
 http.createServer(app).listen(app.get('port'), function(){
