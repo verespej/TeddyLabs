@@ -7,4 +7,8 @@ For more info, visit [http://teddylabs.com/](http://teddylabs.com/)
 
 ##How to Install
 
-*npm install
+*$ npm install
+
+##How to Run
+
+*$ node app
