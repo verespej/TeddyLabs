@@ -32,9 +32,11 @@ app.post('/email/', function (req, res) {
     var email = req.param('email');
 
     var doc = {email: email};
-    var uri = process.env.MONGOLAB_URI;
+    var uri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/teddylabs';
     MongoClient.connect(uri, function (err, db) {
-		if (err) throw err;
+		if (err) {
+			throw err;
+		}
 		var collection = db.collection('emails');
 		collection.count(doc, function(err, count) {
 			if (!count) {

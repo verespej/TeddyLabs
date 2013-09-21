@@ -6,12 +6,12 @@ $(function () {
 		var email = $(this).find('input[type=email]').val();
 		if (!validateEmail(email)) {
 			alert('Please enter a valid email address');
+		} else {
+			// Post the email
+			$.post('/email/', $(this).serialize()).done(function () {
+				console.log('hi');
+			});
 		}
-
-		// Post the email
-		$.post('/email/', $(this).serialize()).done(function () {
-			console.log('hi');
-		});
 
 		return false;
 	});
