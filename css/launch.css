@@ -32,7 +32,7 @@ body {
 	padding: 3em;
 }
 
-input[type="text"] {
+input[type="email"] {
 	vertical-align: center;
 	margin: 0px;
 }
