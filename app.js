@@ -32,7 +32,8 @@ app.post('/email/', function (req, res) {
     var email = req.param('email');
 
     var doc = {email: email};
-    MongoClient.connect('mongodb://localhost:27017/teddylabs', function (err, db) {
+    var uri = process.env.MONGOLAB_URI;
+    MongoClient.connect(uri, function (err, db) {
 		if (err) throw err;
 		var collection = db.collection('emails');
 		collection.count(doc, function(err, count) {
@@ -43,7 +44,7 @@ app.post('/email/', function (req, res) {
 			} else {
 				console.log('already inserted');
 			}
-		})
+		});
     });
 });
 
