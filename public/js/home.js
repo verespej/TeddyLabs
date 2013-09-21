@@ -30,10 +30,10 @@ $(function () {
 	}
 	
 	var backgrounds = [
-		"css/Images/toys1.jpg",
-		"css/Images/toys2.jpg",
-		"css/Images/toys3.jpg",
-		"css/Images/toys4.jpg"
+		"img/toys1.jpg",
+		"img/toys2.jpg",
+		"img/toys3.jpg",
+		"img/toys4.jpg"
 	];
 
 	for (var i = 0; i < backgrounds.length; i++) {
@@ -52,8 +52,7 @@ $(function () {
 			$("body").css({ backgroundImage: url(backgrounds[index]) });
 		},
 
-		//1000 * 60
-		1000 * 2
+		1000 * 60
 	);
 
 });
