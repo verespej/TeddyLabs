@@ -4,6 +4,8 @@
  */
 
 var express = require('express');
+var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
 var http = require('http');
 var path = require('path');
 
@@ -14,19 +16,35 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 
 // Other
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.configure(function(){
+	app.use(express.favicon());
+	app.use(express.logger('dev'));
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(app.router);
+	app.use(express.static(path.join(__dirname, 'public')));
+});
 
 app.get('/', function (req, res) {
 	res.sendfile('public/index.html');
 });
 app.post('/email/', function (req, res) {
     var email = req.param('email');
-    console.log(email);
+
+    var doc = {email: email};
+    MongoClient.connect('mongodb://localhost:27017/teddylabs', function (err, db) {
+		if (err) throw err;
+		var collection = db.collection('emails');
+		collection.count(doc, function(err, count) {
+			if (!count) {
+				collection.insert(doc, function(err, docs) {
+					console.log('inserted');
+				});
+			} else {
+				console.log('already inserted');
+			}
+		})
+    });
 });
 
 http.createServer(app).listen(app.get('port'), function(){
