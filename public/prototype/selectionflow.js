@@ -10,6 +10,10 @@ $(document).ready(function(){
   var currentRight;
   var speed = 200;
 
+  function getImageUrl(item) {
+    return item.Images[0].url_570xN;
+  }
+
   function affirm(elem, color) {
     elem.closest('.thumbnail').css('box-shadow', '0 0 25px ' + color);
     setTimeout(function(){
@@ -19,7 +23,6 @@ $(document).ready(function(){
 
   function throwOut($elem, throwOutRight) {
     var direction = throwOutRight ? 'right' : 'left';
-    console.log($elem);
 
     var throwOutProps = {
       opacity: 0
@@ -41,7 +44,7 @@ $(document).ready(function(){
     }).sample().value();
 
     setTimeout(function(){
-      elem.attr('src', 'img/'+next.img);
+      elem.attr('src', getImageUrl(next));
     }, speed);
 
     return next;
@@ -73,7 +76,10 @@ $(document).ready(function(){
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
-  $.getJSON("data.json", function(data){
+  var dataFile = 'exampledata.json'; //"data.json"
+  $.getJSON(dataFile, function(data){
+    var results = data.results;
+    /*
     // Filter data from params
     var age = $.urlParam("age");
     var girls = $.urlParam("girls");
@@ -91,10 +97,13 @@ $(document).ready(function(){
     });
 
     // Start the game
+    */
+    filteredData = results;
+
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
 
-    $('#leftimg').attr('src', "img/" + currentLeft.img);
-    $('#rightimg').attr('src', "img/" + currentRight.img);
+    $('#leftimg').attr('src', getImageUrl(currentLeft));
+    $('#rightimg').attr('src', getImageUrl(currentRight));
   });
 });

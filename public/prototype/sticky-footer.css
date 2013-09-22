@@ -62,9 +62,8 @@ body {
 
 .thumbnail {
     margin-bottom: 15px;
-    height: 300px;
 }
 
 .thumbnail > img {
-    max-height: 300px;
+    max-height: 290px;
 }
