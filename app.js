@@ -103,16 +103,18 @@ app.get('/api/toys', function (req, res) {
 
 	if (typeof gender !== "undefined") {
 		switch(gender) {
-			case "either":
 			case "boys":
 			case "boy": {
-				description.push("boy", "male");
+				description.push("boy", "boys");
 			} break;
 
-			case "either":
 			case "girls":
 			case "girl": {
-				description.push("girl", "female");
+				description.push("girl", "girls");
+			} break;
+
+			case "either": {
+				description.push("boy", "boys", "girl", "girls");
 			} break;
 		}
 	}
@@ -130,6 +132,7 @@ app.get('/api/toys', function (req, res) {
 				   (typeof maxPrice !== "undefined" ? "max_price=" + maxPrice + "&" : "") +
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
 				   (typeof description !== "undefined" && description !== "" ? "description=" + description + "&" : "") +
+				   (typeof description !== "undefined" && description !== "" ? "tags=" + description + "&" : "") +
 				   "limit=30&" +
 				   "api_key=ouavs6p1ors6wt2e9uz9s4j1";
 
