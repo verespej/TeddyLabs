@@ -115,14 +115,13 @@ app.get('/api/toys', function (req, res) {
 	}
 
 	description = description.toString();
-	//description = description.substring(1, description.length - 2);
-
+	
 	console.log("Description: " + description)
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" +
 				   "includes=Images,Shop&" +
-				   "category=Toys/Puzzle/Babies&" +
+				   "category=Toys&" +
 				   (typeof maxPrice !== "undefined" ? "max_price=" + maxPrice + "&" : "") +
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
 				   (typeof description !== "undefined" && description !== "" ? "description=" + description + "&" : "") +
