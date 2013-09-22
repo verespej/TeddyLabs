@@ -133,7 +133,7 @@ app.get('/api/toys', function (req, res) {
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
 				   (typeof description !== "undefined" && description !== "" ? "description=" + description + "&" : "") +
 				   (typeof description !== "undefined" && description !== "" ? "tags=" + description + "&" : "") +
-				   "limit=30&" +
+				   "limit=75&" +
 				   "api_key=ouavs6p1ors6wt2e9uz9s4j1";
 
 	console.log("Path: " + etsyPath);

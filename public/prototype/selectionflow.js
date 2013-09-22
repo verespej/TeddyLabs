@@ -139,7 +139,7 @@ $(document).ready(function(){
 
   if (getURLParameters("cached")) {
     dataFile = 'apicall.json';
-  } else {}
+  } else {
     dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
   }
 
