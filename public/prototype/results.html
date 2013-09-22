@@ -29,10 +29,15 @@
         return item.Images[0].url_570xN;
       }
 
+      function formatUrl(url) {
+        return url.substr(0, url.indexOf('?'));
+      }
+
       function populate(elem, data) {
         elem.find('img').attr('src', getImageUrl(data));
         elem.find('.caption').find('h3').text(data.title.replace(/\+/g, " "))
         elem.find('p.lead').text('$' + data.price);
+        elem.find('a').attr('href', formatUrl(data.url));
       }
 
       $(document).ready(function(e){
@@ -71,39 +76,46 @@
         </p>
 
         <div class="row">
-                <div class="col-sm-4" id="top1">
-                  <div class="thumbnail">
-                    <img src="" width="200px"/>
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p class="lead">$0.00</p>
-                      <p><a href="#" class="btn btn-success btn-block">Buy</a></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4" id="top2">
-                  <div class="thumbnail">
-                    <img src="" width="200px"/>
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p class="lead">$0.00</p>
-                      <p><a href="#" class="btn btn-success btn-block">Buy</a></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-4" id="top3">
-                  <div class="thumbnail">
-                    <img src="" width="200px"/>
-                    <div class="caption">
-                      <h3>Thumbnail label</h3>
-                      <p class="lead">$0.00</p>
-                      <p><a href="#" class="btn btn-success btn-block">Buy</a></p>
-                    </div>
-                  </div>
-                </div>
 
-
+          <div class="col-sm-4" id="top1">
+            <div class="thumbnail">
+              <img src="" width="200px"/>
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p class="lead">$0.00</p>
+                <a target="_blank">
+                  <p class="btn btn-success btn-block">Buy</p>
+                </a>
               </div>
+            </div>
+          </div>
+          <div class="col-sm-4" id="top2">
+            <div class="thumbnail">
+              <img src="" width="200px"/>
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p class="lead">$0.00</p>
+                <a target="_blank">
+                  <p class="btn btn-success btn-block">Buy</p>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4" id="top3">
+            <div class="thumbnail">
+              <img src="" width="200px"/>
+              <div class="caption">
+                <h3>Thumbnail label</h3>
+                <p class="lead">$0.00</p>
+                <a target="_blank">
+                  <p class="btn btn-success btn-block">Buy</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
 
