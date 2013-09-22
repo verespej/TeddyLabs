@@ -1,9 +1,35 @@
 $(document).ready(function(){
-  $.urlParam = function(name){
-    var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
-    if(!results) return undefined;
-    return results[1] || 0;
-  };
+
+  function getURLParameters(paramName){
+          var sURL = window.document.URL.toString();
+      if (sURL.indexOf("?") > 0)
+      {
+         var arrParams = sURL.split("?");
+         var arrURLParams = arrParams[1].split("&");
+         var arrParamNames = new Array(arrURLParams.length);
+         var arrParamValues = new Array(arrURLParams.length);
+         var i = 0;
+         for (i=0;i<arrURLParams.length;i++)
+         {
+          var sParam =  arrURLParams[i].split("=");
+          arrParamNames[i] = sParam[0];
+          if (sParam[1] != "")
+              arrParamValues[i] = unescape(sParam[1]);
+          else
+              arrParamValues[i] = "No Value";
+         }
+
+         for (i=0;i<arrURLParams.length;i++)
+         {
+                  if(arrParamNames[i] == paramName){
+              //alert("Param:"+arrParamValues[i]);
+                  return arrParamValues[i];
+               }
+         }
+         return false;
+      }
+
+  }
 
   var filteredData;
   var currentLeft;
@@ -76,14 +102,13 @@ $(document).ready(function(){
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
-  var dataFile = 'exampledata.json'; //"data.json"
-  $.getJSON(dataFile, function(data){
-    var results = data.results;
-    /*
+
+
     // Filter data from params
-    var age = $.urlParam("age");
-    var girls = $.urlParam("girls");
-    var boys = $.urlParam("boys");
+    var age = getURLParameters("age");
+    var girls = getURLParameters('girl');
+    var boys = getURLParameters('boy');
+/*
 
     if(!boys && !girls) {
       // None selected?
@@ -98,7 +123,17 @@ $(document).ready(function(){
 
     // Start the game
     */
+
+  var dataFile = '/api/toys?';
+  // price_range=
+  // gender
+  // age_range
+
+  $.getJSON(dataFile, function(data){
+    var results = data.results;
+
     filteredData = results;
+    console.log(data);
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
