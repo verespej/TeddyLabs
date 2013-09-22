@@ -34,6 +34,7 @@ $(document).ready(function(){
   var filteredData;
   var currentLeft;
   var currentRight;
+  var nextObj;
   var speed = 300;
 
   function getImageUrl(item) {
@@ -68,13 +69,19 @@ $(document).ready(function(){
 
   // Swap out element with something not in the dont show list
   function swapout(elem) {
-    next = _.chain(filteredData).reject(function(datum){
-      if(_([currentRight, currentLeft]).contains(datum)) return true;
-    }).sample().value();
+    next = nextObj;
 
     setTimeout(function(){
       elem.attr('src', getImageUrl(next));
     }, speed);
+
+    // Prefetch next img
+    nextObj = _.chain(filteredData).reject(function(datum){
+      if(_([currentRight, currentLeft]).contains(datum)) return true;
+    }).sample().value();
+
+    prefetch_img = new Image();
+    prefetch_img.src = getImageUrl(nextObj);
 
     return next;
   }
@@ -141,6 +148,10 @@ $(document).ready(function(){
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
+    nextObj = _.chain(filteredData).reject(function(datum){
+      if(_([currentRight, currentLeft]).contains(datum)) return true;
+    }).sample().value();
+
 
     $('#leftimg').attr('src', getImageUrl(currentLeft));
     $('#rightimg').attr('src', getImageUrl(currentRight));
