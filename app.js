@@ -26,9 +26,6 @@ app.configure(function(){
 	app.use(express.static(path.join(__dirname, 'public')));
 });
 
-app.get('/', function (req, res) {
-	res.sendfile('public/index.html');
-});
 app.post('/email/', function (req, res) {
     var email = req.param('email');
 
