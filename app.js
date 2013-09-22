@@ -50,6 +50,38 @@ app.post('/email/', function (req, res) {
     });
 });
 
+app.get('/api/toys/', function (req, res) {
+	var gender = req.param("gender");
+	var maxPrice = req.param("max_price");
+	var minPrice = req.param("min_price");
+
+	var etsyPath = "/v2/listings/active?" +
+                   "includes=Images,Shop&" + 
+                   "category=Toys&" + 
+                   "max_price=" + maxPrice + "&" +
+                   "min_price=" + minPrice + "&" + 
+                   "limit=100&" + 
+                   "sort_on=created&" + 
+                   "sort_order=down&" + 
+                   "geo_level=country&" + 
+                   "api_key=ouavs6p1ors6wt2e9uz9s4j1";
+
+	var options = {
+  		host: "https://openapi.etsy.com",
+  		port: 80,
+  		path: etsyPath,
+	};
+
+	http.get(options, function(json) {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify(json));
+	}).on("error", function(error) {
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify({ error: error }));
+	});
+   
+});
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
