@@ -50,8 +50,23 @@ app.post('/email/', function (req, res) {
 
 app.get('/api/toys', function (req, res) {
 	var gender = req.param("gender");
+	var ageRange = req.param("age_range");
 	var maxPrice = req.param("max_price");
 	var minPrice = req.param("min_price");
+
+	var recipient = "";
+	switch (gender)
+	{
+		case "boy":
+		{
+
+		} break;
+
+		case "girl":
+		{
+
+		} break;
+	}
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" + 
