@@ -8,7 +8,7 @@ $(document).ready(function(){
   var filteredData;
   var currentLeft;
   var currentRight;
-  var speed = 300;
+  var speed = 200;
 
   function affirm(elem, color) {
     elem.closest('.thumbnail').css('box-shadow', '0 0 25px ' + color);
