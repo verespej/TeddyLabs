@@ -52,6 +52,7 @@ app.get('/api/toys', function (req, res) {
 	var gender = req.param("gender");
 	var ageRange = req.param("age_range");
 	var priceRange = req.param("price_range");
+	var category = req.param("catgeory");
 
 	var description = [];
 
@@ -102,16 +103,22 @@ app.get('/api/toys', function (req, res) {
 
 	if (typeof gender !== "undefined") {
 		switch(gender) {
+			case "either":
 			case "boys":
 			case "boy": {
 				description.push("boy", "male");
 			} break;
 
+			case "either":
 			case "girls":
 			case "girl": {
 				description.push("girl", "female");
 			} break;
 		}
+	}
+
+	if (typeof category !== "undefined") {
+		description.push(category);
 	}
 
 	description = description.toString();
