@@ -25,10 +25,14 @@
     <script>
       var filteredData;
 
+      function getImageUrl(item) {
+        return item.Images[0].url_570xN;
+      }
+
       function populate(elem, data) {
-        elem.find('img').attr('src', 'img/' + data.img);
-        elem.find('.caption').find('h3').text(data.name.replace(/\+/g, " "))
-        elem.find('p.lead').text('$' + (data.price/100).toFixed(2));
+        elem.find('img').attr('src', getImageUrl(data));
+        elem.find('.caption').find('h3').text(data.title.replace(/\+/g, " "))
+        elem.find('p.lead').text('$' + data.price);
       }
 
       $(document).ready(function(e){

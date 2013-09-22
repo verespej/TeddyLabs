@@ -87,6 +87,7 @@ $(document).ready(function(){
   }
 
   $('#leftimg').closest('.selectionpanel').click(function(e){
+    console.log("Click Left");
     // We don't want the right one, decrement its popularity
     currentRight.popularity--;
     // But we do want the left one
@@ -94,21 +95,28 @@ $(document).ready(function(){
 
     affirm($('#leftimg'), 'rgba(0, 255, 0, 1)');
     throwOut($('#rightimg').closest('.selectionpanel'), false);
-    currentLeft = swapout($("#rightimg"));
+    currentRight = swapout($("#rightimg"));
   });
   $('#rightimg').closest('.selectionpanel').click(function(e){
     // We do want the right one
     currentRight.popularity++;
     currentLeft.popularity--;
+    console.log("Lfet popularity", currentLeft.popularity);
+    console.log("Right popularity", currentRight.popularity);
 
     affirm($('#rightimg'), 'rgba(0, 255, 0, 1)');
     throwOut($('#leftimg').closest('.selectionpanel'), true);
-    currentRight = swapout($("#leftimg"));
+    currentLeft = swapout($("#leftimg"));
   });
 
   $('a#imdone').click(function(e){
-    var jstring = JSON.stringify(filteredData);
+    var dataToSend = _(filteredData).sortBy(function(datum){
+      return datum.popularity;
+    }).reverse().slice(0,3);
 
+    console.log(dataToSend);
+
+    var jstring = JSON.stringify(dataToSend);
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
@@ -143,7 +151,10 @@ $(document).ready(function(){
   $.getJSON(dataFile, function(data){
     var results = data.results;
 
-    filteredData = results;
+    filteredData = _(results).map(function(datum) {
+      datum.popularity = 0;
+      return datum;
+    });
     console.log(data);
 
     currentLeft = _(filteredData).sample();
