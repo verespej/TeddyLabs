@@ -34,7 +34,8 @@ $(document).ready(function(){
   var filteredData;
   var currentLeft;
   var currentRight;
-  var speed = 200;
+  var nextObj;
+  var speed = 300;
 
   function getImageUrl(item) {
     return item.Images[0].url_570xN;
@@ -51,7 +52,7 @@ $(document).ready(function(){
     var direction = throwOutRight ? 'right' : 'left';
 
     var throwOutProps = {
-      opacity: 0
+      opacity: 0,
     };
     throwOutProps[direction] = '400px';
 
@@ -60,18 +61,27 @@ $(document).ready(function(){
     };
     throwInProps[direction] = 0;
 
-    $elem.animate(throwOutProps, speed).animate(throwInProps, speed);
+    var rotateName = 'rotate' + direction;
+    $elem.addClass(rotateName).animate(throwOutProps, speed, function () {
+      $(this).removeClass(rotateName);
+    }).animate(throwInProps, speed);
   }
 
   // Swap out element with something not in the dont show list
   function swapout(elem) {
-    next = _.chain(filteredData).reject(function(datum){
-      if(_([currentRight, currentLeft]).contains(datum)) return true;
-    }).sample().value();
+    next = nextObj;
 
     setTimeout(function(){
       elem.attr('src', getImageUrl(next));
     }, speed);
+
+    // Prefetch next img
+    nextObj = _.chain(filteredData).reject(function(datum){
+      if(_([currentRight, currentLeft]).contains(datum)) return true;
+    }).sample().value();
+
+    prefetch_img = new Image();
+    prefetch_img.src = getImageUrl(nextObj);
 
     return next;
   }
@@ -124,6 +134,7 @@ $(document).ready(function(){
     // Start the game
     */
 
+  // var dataFile = 'exampledata.json';
   var dataFile = '/api/toys?';
   // price_range=
   // gender
@@ -137,6 +148,10 @@ $(document).ready(function(){
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
+    nextObj = _.chain(filteredData).reject(function(datum){
+      if(_([currentRight, currentLeft]).contains(datum)) return true;
+    }).sample().value();
+
 
     $('#leftimg').attr('src', getImageUrl(currentLeft));
     $('#rightimg').attr('src', getImageUrl(currentRight));
