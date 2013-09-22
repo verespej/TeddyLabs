@@ -60,10 +60,28 @@ body {
 
 /* selectionflow */
 
+
 .thumbnail {
     margin-bottom: 15px;
 }
 
 .thumbnail > img {
     max-height: 290px;
+}
+
+.rotateleft, .rotateright {
+  transition: transform .3s ease-out;
+  transition: -ms-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+}
+
+.rotateleft {
+  transform: rotate(30deg);
+  -ms-transform: rotate(30deg); /* IE 9 */
+  -webkit-transform: rotate(30deg); /* Safari and Chrome */
+}
+.rotateright {
+  transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg); /* IE 9 */
+  -webkit-transform: rotate(-30deg); /* Safari and Chrome */
 }
