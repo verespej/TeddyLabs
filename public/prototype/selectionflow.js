@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   function getURLParameters(paramName){
-          var sURL = window.document.URL.toString();
+      var sURL = window.document.URL.toString();
       if (sURL.indexOf("?") > 0)
       {
          var arrParams = sURL.split("?");
@@ -87,7 +87,6 @@ $(document).ready(function(){
   }
 
   $('#leftimg').closest('.selectionpanel').click(function(e){
-    console.log("Click Left");
     // We don't want the right one, decrement its popularity
     currentRight.popularity--;
     // But we do want the left one
@@ -101,8 +100,6 @@ $(document).ready(function(){
     // We do want the right one
     currentRight.popularity++;
     currentLeft.popularity--;
-    console.log("Lfet popularity", currentLeft.popularity);
-    console.log("Right popularity", currentRight.popularity);
 
     affirm($('#rightimg'), 'rgba(0, 255, 0, 1)');
     throwOut($('#leftimg').closest('.selectionpanel'), true);
@@ -114,16 +111,32 @@ $(document).ready(function(){
       return datum.popularity;
     }).reverse().slice(0,3);
 
-    console.log(dataToSend);
-
     var jstring = JSON.stringify(dataToSend);
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
-  // var dataFile = 'exampledata.json';
-  var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  // Filter data from params
+  var age = getURLParameters("age");
+  var girls = getURLParameters('girl');
+  var boys = getURLParameters('boy');
 
-  console.log("Data: " + dataFile);
+/*
+    if(!boys && !girls) {
+      // None selected?
+      boys = true;
+      girls = true;
+    }
+
+    filteredData = _(data).select(function(datum){
+      if(boys && _(datum.gender).contains('b')) return true;
+      if(girls && _(datum.gender).contains('g')) return true;
+    });
+
+    // Start the game
+    */
+
+  var dataFile = 'apicall.json';
+  // var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
 
   $.getJSON(dataFile, function(data){
     var results = data.results;
@@ -132,7 +145,6 @@ $(document).ready(function(){
       datum.popularity = 0;
       return datum;
     });
-    console.log(data);
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
