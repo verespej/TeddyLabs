@@ -51,34 +51,76 @@ app.post('/email/', function (req, res) {
 app.get('/api/toys', function (req, res) {
 	var gender = req.param("gender");
 	var ageRange = req.param("age_range");
-	var maxPrice = req.param("max_price");
-	var minPrice = req.param("min_price");
+	var priceRange = req.param("price_range");
 
-	var recipient = "";
+	var description = [];
 
-	if (typeof gender !== "undefined" && typeof ageRange !== "undefined")
-	{
-		ageRange.split("-");
+	var minPrice;
+	var maxPrice;
 
-		switch (gender)
-		{
-			case "boy":
-			{
+	if (typeof priceRange !== "undefined") {
+		switch (priceRange) {
+			case "price25": {
+				minPrice = 0;
+				maxPrice = 25;
 			} break;
 
-			case "girl":
-			{
+			case "price50": {
+				minPrice = 25;
+				maxPrice = 50;
+			} break;
 
+			case "price75": {
+				minPrice = 50;
+				maxPrice = 75;
+			} break;
+
+			case "pricealot": {
+				minPrice = 75;
 			} break;
 		}
 	}
 
+	if (typeof ageRange !== "undefined") {
+		switch (ageRange) {
+			case "baby": { 
+				description.push("baby", "babies");
+			} break;
+			
+			case "toddler": {
+				description.push("toddler", "toddlers");
+			} break;
+
+			case "kids": {
+				description.push("kid", "kids", "child", "children");
+			} break;
+		}
+	}
+
+	if (typeof gender !== "undefined") {
+		switch(gender) {
+			case "boy": {
+				description.push("boy", "male");
+			} break;
+
+			case "girl": {
+				description.push("girl", "female");
+			} break;
+		}
+	}
+
+	description = description.toString();
+	//description = description.substring(1, description.length - 2);
+
+	console.log("Description: " + description)
+
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" +
 				   "includes=Images,Shop&" +
-				   "category=Toys&" +
+				   "category=Toys,Children&" +
 				   (typeof maxPrice !== "undefined" ? "max_price=" + maxPrice + "&" : "") +
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
+				   (typeof description !== "undefined" && description !== "" ? "description=" + description + "&" : "") +
 				   "limit=100&" +
 				   "sort_on=created&" +
 				   "sort_order=down&" +
