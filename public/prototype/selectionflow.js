@@ -77,7 +77,7 @@ $(document).ready(function(){
 
     // Prefetch next img
     nextObj = _.chain(filteredData).reject(function(datum){
-      if(_([currentRight, currentLeft]).contains(datum)) return true;
+      if(_([currentRight, currentLeft, nextObj]).contains(datum)) return true;
     }).sample().value();
 
     prefetch_img = new Image();
@@ -136,7 +136,14 @@ $(document).ready(function(){
     */
 
   // var dataFile = 'apicall.json';
-  var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  // var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  var dataFile = "";
+
+  if (getURLParameters("cached")) {
+    dataFile = 'apicall.json';
+  } else {
+    dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  }
 
   $.getJSON(dataFile, function(data){
     var results = data.results;
