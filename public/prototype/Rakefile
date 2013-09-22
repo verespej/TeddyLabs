@@ -1,0 +1,4 @@
+task :deploy do
+    sh 'rsync -rave ssh ./ chris@pacific.sevenservers.com:/home/chris/www/default/public_html/teddylabs'
+    sh "ssh chris@pacific.sevenservers.com 'cd /home/chris/www/default/public_html/teddylabs/img && chmod 644 *'"
+end
