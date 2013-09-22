@@ -115,8 +115,6 @@ app.get('/api/toys', function (req, res) {
 	}
 
 	description = description.toString();
-	
-	console.log("Description: " + description)
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" +
