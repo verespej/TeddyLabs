@@ -9,9 +9,11 @@ $(function () {
 		} else {
 			// Post the email
 			$.post('/email/', $(this).serialize()).done(function () {
-				console.log('hi');
+				console.log('successful email post');
 			});
 		}
+
+		$('.card').addClass('flipped');
 
 		return false;
 	});

@@ -8,21 +8,40 @@
 		<link href="css/launch.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-		<div class="text-container">
-			<h1><img id="logo" src="img/logo.png" /> Teddy Labs</h1>
-			<h2>Design your own toy!</h2>
-			<ol>
-				<li>Describe the toy you want</li>
-				<li>Review concept art for your toy</li>
-				<li>Have your toy manufactured and shipped to you!</li>
-			</ol>
-			<form id="emailForm" action="/email/">
-				Sign up for our beta: <input type="email" name="email" placeholder="email" />
-				<input type="submit" class="btn btn-primary" value="Sign up!">
-			</form>
-		</div>
+		<div class="flip">
+	        <div class="card">
+	            <div class="face front">
+    				<h1><img id="logo" src="img/logo.png" /> Teddy Labs</h1>
+					<h2>Design your own toy!</h2>
+					<ol>
+						<li>Describe the toy you want</li>
+						<li>Review concept art for your toy</li>
+						<li>Have your toy manufactured and shipped to you!</li>
+					</ol>
+					<form id="emailForm" action="/email/">
+						<p><em>Sign up for our beta:</em></p>
+						<input type="email" name="email" placeholder="email" />
+						<input type="submit" class="btn btn-primary" value="Sign up!">
+					</form>
+	            </div>
+	            <div class="face back">
+	                <h1>Thanks!</h1>
+	                <h3>Like us on facebook</h3>
+
+	                <!-- FB -->
+					<div class="fb-like" data-href="https://www.facebook.com/pages/Teddy-Labs/1415976091949874" data-width="450" data-colorscheme="dark" data-show-faces="true" data-send="true"></div>
+
+					<!-- Twitter -->
+					<a href="https://twitter.com/intent/tweet?button_hashtag=TeddyLabs" class="twitter-hashtag-button" data-size="large">Tweet #TeddyLabs</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+	            </div>
+	        </div>
+	    </div>
 	</body>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="/bootstrap/js/bootstrap.js" type="text/javascript"></script>
 	<script src="/js/home.js"></script>
+
+	<!-- FB -->
+	<div id="fb-root"></div> <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=192661780770623"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script>
 </html>
