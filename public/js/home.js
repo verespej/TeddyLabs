@@ -11,9 +11,11 @@ $(function () {
 			$.post('/email/', $(this).serialize()).done(function () {
 				console.log('successful email post');
 			});
+
+			$('.card').addClass('flipped');
 		}
 
-		$('.card').addClass('flipped');
+		
 
 		event.stopPropagation();
 		return false;
