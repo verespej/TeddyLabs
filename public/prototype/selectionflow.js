@@ -42,7 +42,6 @@ $(document).ready(function(){
   }
 
   function affirm(elem, color) {
-    console.log('hi');
     elem.closest('.thumbnail').css('box-shadow', '0 0 25px ' + color);
     setTimeout(function(){
       elem.closest('.thumbnail').css('box-shadow', 'none');
@@ -95,7 +94,7 @@ $(document).ready(function(){
 
     affirm($('#leftimg'), 'rgba(0, 255, 0, 1)');
     throwOut($('#rightimg').closest('.selectionpanel'), false);
-    currentLeft = swapout($("#rightimg"));
+    currentRight = swapout($("#rightimg"));
   });
   $('#rightimg').closest('.selectionpanel').click(function(e){
     // We do want the right one
@@ -104,11 +103,15 @@ $(document).ready(function(){
 
     affirm($('#rightimg'), 'rgba(0, 255, 0, 1)');
     throwOut($('#leftimg').closest('.selectionpanel'), true);
-    currentRight = swapout($("#leftimg"));
+    currentLeft = swapout($("#leftimg"));
   });
 
   $('a#imdone').click(function(e){
-    var jstring = JSON.stringify(filteredData);
+    var dataToSend = _(filteredData).sortBy(function(datum){
+      return datum.popularity;
+    }).reverse().slice(0,3);
+
+    var jstring = JSON.stringify(dataToSend);
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
@@ -139,10 +142,12 @@ $(document).ready(function(){
   // age_range
 
   $.getJSON(dataFile, function(data){
-    console.log(JSON.stringify(data));
     var results = data.results;
 
-    filteredData = results;
+    filteredData = _(results).map(function(datum) {
+      datum.popularity = 0;
+      return datum;
+    });
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
