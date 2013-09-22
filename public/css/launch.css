@@ -14,7 +14,7 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
+  color: black;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -45,6 +45,7 @@ body {
 }
 
 /* Card */
+
 .flip {
   height: 350px;
   margin: 50px auto;
@@ -65,7 +66,7 @@ body {
 }
 
 .flip .card .face {
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(255, 255, 255, 0.65);
   border-radius: 1.5em;
   display: block;
   float: left;
@@ -90,6 +91,7 @@ body {
 }
 
 /* Inside of card */
+
 input[type="email"] {
   margin: 0px;
   vertical-align: middle;
