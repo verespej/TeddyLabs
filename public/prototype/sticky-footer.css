@@ -77,11 +77,11 @@ body {
 
 .rotateleft {
   transform: rotate(30deg);
-  -ms-transform: rotate(30deg); /* IE 9 */
-  -webkit-transform: rotate(30deg); /* Safari and Chrome */
+  -ms-transform: rotate(30deg);
+  -webkit-transform: rotate(30deg);
 }
 .rotateright {
   transform: rotate(-30deg);
-  -ms-transform: rotate(-30deg); /* IE 9 */
-  -webkit-transform: rotate(-30deg); /* Safari and Chrome */
+  -ms-transform: rotate(-30deg);
+  -webkit-transform: rotate(-30deg);
 }
