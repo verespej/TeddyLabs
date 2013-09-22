@@ -1,5 +1,5 @@
 $(function () {
-	$('#emailForm').submit(function () {
+	$('#emailForm').submit(function (event) {
 		event.preventDefault();
 
 		// Validate the email
@@ -8,13 +8,14 @@ $(function () {
 			alert('Please enter a valid email address');
 		} else {
 			// Post the email
-			$.post('/email/', $(this).serialize()).done(function () {
-				console.log('successful email post');
-			});
+			// $.post('/email/', $(this).serialize()).done(function () {
+			// 	console.log('successful email post');
+			// });
 		}
 
 		$('.card').addClass('flipped');
 
+		event.stopPropagation();
 		return false;
 	});
 
