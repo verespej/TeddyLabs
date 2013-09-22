@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sticky Footer Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/ui/jquery.ui.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Parents: Filter Game</h1>
+        </div>
+        <p class="lead">Decide what your kids see, and what they don't see by filtering.</p>
+        <form class="form-horizontal" role="form" action="selectionflow.html" method="get">
+          <div class="form-group">
+            <label for="inputEmail1" class="col-lg-2 control-label">I'd like results for</label>
+            <div class="col-lg-10">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="boys" value="true"> Boys
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="girls" value="true"> Girls
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword1" class="col-lg-2 control-label">Age</label>
+            <div class="col-lg-10">
+              <select class="form-control" name="age" id="age-menu">
+                <option>2</option>
+                <option>3-4</option>
+                <option>5-7</option>
+                <option>8-11</option>
+                <option>12+</option>
+              </select>
+
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword1" class="col-lg-2 control-label">Price</label>
+            <div class="col-lg-10">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="price25" value="true"> $0-25
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="price50" value="true"> $25-50
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="price75" value="true"> $50-75
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" name="pricealot" value="true"> $75+
+              </label>
+
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPassword1" class="col-lg-2 control-label">Preferences</label>
+            <div class="col-lg-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Educational
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Creative
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Active
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Durable
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Recyclable
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  Different
+                </label>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+              <input type="submit" class="btn btn-primary btn-lg" value="Start Game for Kids"/>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit">TeddyLabs via Startup Seattle</p>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
+  <script type="text/javascript">
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+  });
+  </script>
+</html>
