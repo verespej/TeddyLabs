@@ -50,16 +50,16 @@ app.post('/email/', function (req, res) {
     });
 });
 
-app.get('/api/toys/', function (req, res) {
-	var gender = req.param("gender");
-	var maxPrice = req.param("max_price");
-	var minPrice = req.param("min_price");
+app.get('/api/toys', function (req, res) {
+	//var gender = req.param("gender");
+	//var maxPrice = req.param("max_price");
+	//var minPrice = req.param("min_price");
 
 	var etsyPath = "/v2/listings/active?" +
                    "includes=Images,Shop&" + 
                    "category=Toys&" + 
-                   "max_price=" + maxPrice + "&" +
-                   "min_price=" + minPrice + "&" + 
+                   //"max_price=" + maxPrice + "&" +
+                   //"min_price=" + minPrice + "&" + 
                    "limit=100&" + 
                    "sort_on=created&" + 
                    "sort_order=down&" + 
@@ -67,16 +67,24 @@ app.get('/api/toys/', function (req, res) {
                    "api_key=ouavs6p1ors6wt2e9uz9s4j1";
 
 	var options = {
-  		host: "https://openapi.etsy.com",
-  		port: 80,
-  		path: etsyPath,
+  		host: "http://openapi.etsy.com/",
+  		path: etsyPath
 	};
 
-	http.get(options, function(json) {
-		res.writeHead(200, { 'Content-Type': 'application/json' });
-		res.write(JSON.stringify(json));
+	http.get(options, function(etsyRes) {
+		var etsyJson = "";
+		console.log("StatusCode: " + etsyRes.statusCode);
+
+		etsyRes.on('data', function(chunk) {
+        	etsyJson += chunk;
+    	});
+
+    	etsyRes.on('end', function() {
+    		res.writeHead(200, { 'Content-Type': 'application/json' });
+			res.write(etsyJson);
+    	});
 	}).on("error", function(error) {
-		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.writeHead(400, { 'Content-Type': 'application/json' });
 		res.write(JSON.stringify({ error: error }));
 	});
    
