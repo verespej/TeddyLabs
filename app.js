@@ -83,15 +83,18 @@ app.get('/api/toys', function (req, res) {
 
 	if (typeof ageRange !== "undefined") {
 		switch (ageRange) {
+			case "babies":
 			case "baby": { 
 				description.push("baby", "babies");
 			} break;
-			
+
+			case "toddlers":			
 			case "toddler": {
 				description.push("toddler", "toddlers");
 			} break;
 
-			case "kids": {
+			case "kids": 
+			case "kid": {
 				description.push("kid", "kids", "child", "children");
 			} break;
 		}
@@ -99,10 +102,12 @@ app.get('/api/toys', function (req, res) {
 
 	if (typeof gender !== "undefined") {
 		switch(gender) {
+			case "boys":
 			case "boy": {
 				description.push("boy", "male");
 			} break;
 
+			case "girls":
 			case "girl": {
 				description.push("girl", "female");
 			} break;
