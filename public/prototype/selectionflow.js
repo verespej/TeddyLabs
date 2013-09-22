@@ -77,7 +77,7 @@ $(document).ready(function(){
 
     // Prefetch next img
     nextObj = _.chain(filteredData).reject(function(datum){
-      if(_([currentRight, currentLeft]).contains(datum)) return true;
+      if(_([currentRight, currentLeft, nextObj]).contains(datum)) return true;
     }).sample().value();
 
     prefetch_img = new Image();
