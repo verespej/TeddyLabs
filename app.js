@@ -118,15 +118,12 @@ app.get('/api/toys', function (req, res) {
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" +
-				   "includes=Images,Shop&" +
+				   "includes=Images(url_570xN)&" +
 				   "category=Toys&" +
 				   (typeof maxPrice !== "undefined" ? "max_price=" + maxPrice + "&" : "") +
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
 				   (typeof description !== "undefined" && description !== "" ? "description=" + description + "&" : "") +
-				   "limit=100&" +
-				   "sort_on=created&" +
-				   "sort_order=down&" +
-				   "geo_level=country&" +
+				   "limit=30&" +
 				   "api_key=ouavs6p1ors6wt2e9uz9s4j1";
 
 	console.log("Path: " + etsyPath);
