@@ -15,8 +15,6 @@ $(function () {
 			$('.card').addClass('flipped');
 		}
 
-		
-
 		event.stopPropagation();
 		return false;
 	});
