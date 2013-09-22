@@ -37,11 +37,15 @@
           <div class="form-group">
             <label for="inputEmail1" class="col-lg-2 control-label">I'd like results for</label>
             <div class="col-lg-10">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="boy" value="true"> Boys
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="boy"> Boys
               </label>
-              <label class="checkbox-inline">
-                <input type="checkbox" name="girl" value="true"> Girls
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="girl"> Girls
+              </label>
+
+              <label class="radio-inline">
+                <input type="radio" name="gender" value="either"> Either
               </label>
             </div>
           </div>
@@ -49,7 +53,7 @@
           <div class="form-group">
             <label for="inputPassword1" class="col-lg-2 control-label">Age</label>
             <div class="col-lg-10">
-              <select class="form-control" name="age" id="age-menu">
+              <select class="form-control" name="age_range" id="age-menu">
                 <option value="baby">2</option>
                 <option value="toddler">3-4</option>
                 <option value="kid">5-7</option>
@@ -65,19 +69,17 @@
             <label for="inputPassword1" class="col-lg-2 control-label">Price</label>
             <div class="col-lg-10">
               <label class="checkbox-inline">
-                <input type="checkbox" name="price25" value="true"> $0-25
+                <input type="checkbox" name="price_range" value="price25"> $0-25
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" name="price50" value="true"> $25-50
+                <input type="checkbox" name="price_range" value="price50"> $25-50
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" name="price75" value="true"> $50-75
+                <input type="checkbox" name="price_range" value="price75"> $50-75
               </label>
               <label class="checkbox-inline">
-                <input type="checkbox" name="pricealot" value="true"> $75+
+                <input type="checkbox" name="price_range" value="pricealot"> $75+
               </label>
-
-
             </div>
           </div>
 
@@ -86,42 +88,40 @@
             <div class="col-lg-10">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="educational">
                   Educational
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="creative">
                   Creative
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="active">
                   Active
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="durable">
                   Durable
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="recyclable">
                   Recyclable
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="category" value="different">
                   Different
                 </label>
               </div>
-
-
             </div>
           </div>
 

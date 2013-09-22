@@ -112,33 +112,10 @@ $(document).ready(function(){
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
 
-
-
-    // Filter data from params
-    var age = getURLParameters("age");
-    var girls = getURLParameters('girl');
-    var boys = getURLParameters('boy');
-/*
-
-    if(!boys && !girls) {
-      // None selected?
-      boys = true;
-      girls = true;
-    }
-
-    filteredData = _(data).select(function(datum){
-      if(boys && _(datum.gender).contains('b')) return true;
-      if(girls && _(datum.gender).contains('g')) return true;
-    });
-
-    // Start the game
-    */
-
   // var dataFile = 'exampledata.json';
-  var dataFile = '/api/toys?';
-  // price_range=
-  // gender
-  // age_range
+  var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+
+  console.log("Data: " + dataFile);
 
   $.getJSON(dataFile, function(data){
     var results = data.results;
