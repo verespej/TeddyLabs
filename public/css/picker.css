@@ -26,7 +26,7 @@ body {
 }
 
 .cardstack {
-	width: 40%;
+	width: 45%;
 	height: 90%;
 	display: inline-block;
 	overflow: hidden;
@@ -39,6 +39,8 @@ body {
 }
 
 .cardarea {
+	height: 90%;
+
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
@@ -53,7 +55,6 @@ body {
 	-webkit-align-items: center;
 	-ms-flex-align: center;
 	align-items: center;
-	height: 100%;
 	margin: auto 0;
 	overflow: hidden;
 }
