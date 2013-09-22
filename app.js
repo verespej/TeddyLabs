@@ -120,7 +120,7 @@ app.get('/api/toys', function (req, res) {
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
 				   "method=GET&" +
-				   "includes=Images&" +
+				   "includes=Images(url_570xN)&" +
 				   "category=Toys&" +
 				   (typeof maxPrice !== "undefined" ? "max_price=" + maxPrice + "&" : "") +
 				   (typeof minPrice !== "undefined" ? "min_price=" + minPrice + "&" : "") +
