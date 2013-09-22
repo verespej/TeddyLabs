@@ -55,17 +55,22 @@ app.get('/api/toys', function (req, res) {
 	var minPrice = req.param("min_price");
 
 	var recipient = "";
-	switch (gender)
+
+	if (typeof gender !== "undefined" && typeof ageRange !== "undefined")
 	{
-		case "boy":
+		ageRange.split("-");
+
+		switch (gender)
 		{
+			case "boy":
+			{
+			} break;
 
-		} break;
+			case "girl":
+			{
 
-		case "girl":
-		{
-
-		} break;
+			} break;
+		}
 	}
 
 	var etsyPath = "https://openapi.etsy.com/v2/listings/active?" +
