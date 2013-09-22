@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   function getURLParameters(paramName){
-          var sURL = window.document.URL.toString();
+      var sURL = window.document.URL.toString();
       if (sURL.indexOf("?") > 0)
       {
          var arrParams = sURL.split("?");
@@ -42,6 +42,7 @@ $(document).ready(function(){
   }
 
   function affirm(elem, color) {
+    console.log('hi');
     elem.closest('.thumbnail').css('box-shadow', '0 0 25px ' + color);
     setTimeout(function(){
       elem.closest('.thumbnail').css('box-shadow', 'none');
@@ -108,18 +109,15 @@ $(document).ready(function(){
 
   $('a#imdone').click(function(e){
     var jstring = JSON.stringify(filteredData);
-
     window.location.replace("results.html?" + $.param({q: jstring}));
   });
-
-
 
     // Filter data from params
     var age = getURLParameters("age");
     var girls = getURLParameters('girl');
     var boys = getURLParameters('boy');
-/*
 
+/*
     if(!boys && !girls) {
       // None selected?
       boys = true;
@@ -134,17 +132,17 @@ $(document).ready(function(){
     // Start the game
     */
 
-  // var dataFile = 'exampledata.json';
-  var dataFile = '/api/toys?';
+  var dataFile = 'apicall.json';
+  // var dataFile = '/api/toys?';
   // price_range=
   // gender
   // age_range
 
   $.getJSON(dataFile, function(data){
+    console.log(JSON.stringify(data));
     var results = data.results;
 
     filteredData = results;
-    console.log(data);
 
     currentLeft = _(filteredData).sample();
     currentRight = _.chain(filteredData).reject(function(datum){ return datum == currentLeft; }).sample().value();
