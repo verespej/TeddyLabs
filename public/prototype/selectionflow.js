@@ -135,8 +135,13 @@ $(document).ready(function(){
     // Start the game
     */
 
-  var dataFile = 'apicall.json';
-  // var dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  var dataFile = "";
+
+  if (getURLParameters("cached")) {
+    dataFile = 'apicall.json';
+  } else {}
+    dataFile = "/api/toys?" + window.document.URL.toString().split("?")[1];
+  }
 
   $.getJSON(dataFile, function(data){
     var results = data.results;
